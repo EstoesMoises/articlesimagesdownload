@@ -25,9 +25,6 @@
       <button type="submit" class="bg-blue-500 text-white py-2 px-4">Fetch Articles</button>
     </form>
 
-    <!-- Download Images Button -->
-    <button v-if="articles.length" @click="downloadImages" class="bg-green-500 text-white py-2 px-4 mt-4">Download All Images</button>
-
     <!-- Articles Section -->
     <div v-if="articles.length" class="mt-8">
       <h2 class="text-xl font-bold">Articles</h2>
@@ -136,30 +133,6 @@ const extractImageUrls = (content: string): string[] => {
   return imgUrls;
 };
 
-// Function to download all images
-const downloadImages = async () => {
-  const allImageUrls = articles.value.flatMap(article => article.imageUrls);
-  
-  for (const url of allImageUrls) {
-    try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const blob = await response.blob();
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = url.split('/').pop() || 'download'; // Extract the file name from the URL
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href); // Clean up URL object
-      } else {
-        console.error(`Failed to download image: ${url}`);
-      }
-    } catch (error) {
-      console.error(`Error downloading image: ${error}`);
-    }
-  }
-};
 </script>
 
 <style>
