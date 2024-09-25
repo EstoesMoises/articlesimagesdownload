@@ -18,7 +18,7 @@
       <!-- Bearer Token Input -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2" for="bearerToken">Bearer Token:</label>
-        <input v-model="bearerToken" type="text" id="bearerToken" class="border p-2 w-full text-gray-800" required />
+        <input v-model="bearerToken" type="password" id="bearerToken" class="border p-2 w-full text-gray-800" required />
       </div>
 
       <!-- Submit Button -->
